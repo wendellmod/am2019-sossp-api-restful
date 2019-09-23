@@ -28,8 +28,8 @@ public class UserResource {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public User postUser(@RequestBody User create){
-        return repository.save(create);
+    public User postUser(@RequestBody User user){
+        return repository.save(user);
     }
 
     @PutMapping("{userId}")
@@ -38,7 +38,7 @@ public class UserResource {
         return repository.save(user);
     }
 
-    @DeleteMapping("{idUser}")
+    @DeleteMapping("{userId}")
     public void deleteUser(@PathVariable long userId){
         repository.deleteById(userId);
     }
