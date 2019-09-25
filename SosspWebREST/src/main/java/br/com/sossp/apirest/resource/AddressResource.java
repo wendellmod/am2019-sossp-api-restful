@@ -2,15 +2,17 @@ package br.com.sossp.apirest.resource;
 
 import br.com.sossp.apirest.models.Address;
 import br.com.sossp.apirest.repository.AddressRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("address")
+@RequestMapping("api/address")
 public class AddressResource {
 
+    @Autowired
     private AddressRepository repository;
 
     // CRUD - Start

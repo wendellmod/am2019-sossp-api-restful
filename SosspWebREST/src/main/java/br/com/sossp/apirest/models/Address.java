@@ -6,11 +6,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-
 @Entity
+@Data
 @Table(name = "TB_SOS_ADDRESS")
-@SequenceGenerator(name = "address", sequenceName = "SQ_ADDRESS")
+@SequenceGenerator(name = "address", sequenceName = "SQ_ADDRESS", allocationSize = 1)
 public class Address {
 
     @Id
@@ -28,12 +27,14 @@ public class Address {
     private String city;
 
     @Column(name = "DS_STATE")
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     @Column(name = "DS_ZIPCODE")
     private String zipcode;
 
+    // Relationships
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-    private List<UserAddress> userAddresses = new ArrayList<>();
+    private List<UserAddress> userAddresses = new ArrayList<UserAddress>();
 
 }

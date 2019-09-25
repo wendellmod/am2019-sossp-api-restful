@@ -6,10 +6,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Getter
-@Setter
+@Getter @Setter
 @EqualsAndHashCode
-
 public class UserAddressPK implements Serializable {
 
     private long user;

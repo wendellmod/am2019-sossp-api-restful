@@ -6,11 +6,10 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
-
 @Entity
+@Data
 @Table(name = "TB_SOS_USER")
-@SequenceGenerator(name = "user", sequenceName = "SQ_USER")
+@SequenceGenerator(name = "user", sequenceName = "SQ_USER", allocationSize = 1)
 public class User {
 
     @Id
@@ -50,7 +49,11 @@ public class User {
     @Lob
     private String imgAvatar;
 
+    // Relationships
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserAddress> userAddresses;
+
+    @OneToMany(mappedBy = "user")
+    private List<Occurrence> occurrences;
 
 }
