@@ -18,9 +18,8 @@ public class Occurrence {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "occurrence")
     private long occurrenceId;
 
-    @ElementCollection
     @Column(name = "DS_TYPE")
-    private List<String> typeOccurrence = new ArrayList<String>();
+    private String typeOccurrence;
 
     @Column(name = "DT_OCCURRENCE")
     private LocalDate dateOccurrence;
