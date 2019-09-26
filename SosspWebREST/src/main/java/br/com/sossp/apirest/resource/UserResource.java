@@ -1,10 +1,8 @@
 package br.com.sossp.apirest.resource;
 
-import br.com.sossp.apirest.dto.OccurrenceDTO;
 import br.com.sossp.apirest.dto.UserDTO;
 import br.com.sossp.apirest.models.User;
 import br.com.sossp.apirest.repository.UserRepository;
-import br.com.sossp.apirest.service.OccurrenceService;
 import br.com.sossp.apirest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,55 +15,46 @@ import java.util.List;
 public class UserResource {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Autowired
-    private UserService userService;
+    private UserService service;
 
-    @Autowired
-    private OccurrenceService occurrenceService;
 
     // CRUD - Start
     @GetMapping
     public List<User> getUser(){
-        return userRepository.findAll();
+        return repository.findAll();
     }
 
     @GetMapping("{userId}")
     public User getUserId(@PathVariable long userId){
-        return userRepository.findById(userId).get();
+        return repository.findById(userId).get();
     }
 
     // POST USER
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void postUser(@RequestBody User user){
-        this.userRepository.save(user);
+        this.repository.save(user);
     }
 
     // POST USER + ADDRESS
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("complete")
     public void postUserComplete(@RequestBody UserDTO userDTO){
-        this.userService.save(userDTO);
-    }
-
-    // POST OCCURRENCE
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("{idUser}/occurrence")
-    public void postOccurrence(@RequestBody OccurrenceDTO dto, @PathVariable long idUser){
-        this.occurrenceService.save(idUser, dto);
+        this.service.save(userDTO);
     }
 
     @PutMapping("{userId}")
     public User putUser(@RequestBody User user, @PathVariable long userId){
         user.setUserId(userId);
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     @DeleteMapping("{userId}")
     public void deleteUser(@PathVariable long userId){
-        userRepository.deleteById(userId);
+        repository.deleteById(userId);
     }
     // CRUD - End
 

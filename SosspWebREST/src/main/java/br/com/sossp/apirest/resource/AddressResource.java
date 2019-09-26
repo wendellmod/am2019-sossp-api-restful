@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/user/{idUser}/address")
 public class AddressResource {
 
     @Autowired
@@ -33,9 +33,9 @@ public class AddressResource {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("user/{idUser}/address")
-    public void postAddress(@RequestBody AddressDTO dto, @PathVariable long idUser){
-        service.save(idUser, dto);
+    @PostMapping
+    public void postAddress(@RequestBody AddressDTO addressDTO, @PathVariable long idUser){
+        service.save(idUser, addressDTO);
     }
 
     @PutMapping("{addressId}")

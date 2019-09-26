@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/occurence")
+@RequestMapping("api/user/{idUser}/occurrence")
 public class OccurrenceResource {
 
     @Autowired
@@ -30,13 +30,13 @@ public class OccurrenceResource {
     public Occurrence getOccurrenceId(@PathVariable long occurrenceId){
         return repository.findById(occurrenceId).get();
     }
-    /*
+
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("user/{idUser}/post")
-    public void postOccurrence(@RequestBody OccurrenceDTO dto, @PathVariable long idUser){
-        service.save(idUser, dto);
+    @PostMapping
+    public void postOccurrence(@RequestBody OccurrenceDTO occurrenceDTO, @PathVariable long idUser){
+        service.save(idUser, occurrenceDTO);
     }
-    */
+
     @PutMapping("{occurrenceId}")
     public Occurrence putOccurrence(@RequestBody Occurrence occurrence, @PathVariable long occurrenceId){
         occurrence.setOccurrenceId(occurrenceId);
