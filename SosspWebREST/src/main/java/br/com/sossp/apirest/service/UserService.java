@@ -22,7 +22,7 @@ public class UserService {
     }
 
     @Transactional
-    public User save(UserDTO userDto) {
+    public void save(UserDTO userDto) {
         User user = userDto.buildUser();
 
         if(CollectionUtils.isEmpty(userDto.getAddresses())) {
@@ -36,7 +36,7 @@ public class UserService {
             });
         }
 
-        return userRepository.save(user);
+        this.userRepository.save(user);
     }
 
 }

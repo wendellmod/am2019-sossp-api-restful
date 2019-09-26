@@ -1,7 +1,5 @@
 package br.com.sossp.apirest.dto;
 
-
-import br.com.sossp.apirest.models.Address;
 import br.com.sossp.apirest.models.Genre;
 import br.com.sossp.apirest.models.User;
 import lombok.Data;

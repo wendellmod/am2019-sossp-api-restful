@@ -1,5 +1,6 @@
 package br.com.sossp.apirest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -38,6 +39,7 @@ public class Occurrence {
 
     // Relationships
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "USER_ID")
     private User user;
 

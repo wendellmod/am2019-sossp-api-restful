@@ -16,7 +16,7 @@ import java.util.List;
 public class AddressResource {
 
     @Autowired
-    private AddressService addressService;
+    private AddressService service;
 
     @Autowired
     private AddressRepository repository;
@@ -32,9 +32,10 @@ public class AddressResource {
         return repository.findById(addressId).get();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("user/{idUser}/address")
     public void postAddress(@RequestBody AddressDTO dto, @PathVariable long idUser){
-        addressService.save(idUser, dto);
+        service.save(idUser, dto);
     }
 
     @PutMapping("{addressId}")
