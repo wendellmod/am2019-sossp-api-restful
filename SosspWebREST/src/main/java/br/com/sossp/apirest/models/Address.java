@@ -1,5 +1,6 @@
 package br.com.sossp.apirest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,13 +10,11 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "TB_SOS_ADDRESS")
-@SequenceGenerator(name = "address", sequenceName = "SQ_ADDRESS", allocationSize = 1)
 public class Address {
 
     @Id
-    @Column(name = "ADDRESS_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address")
-    private long addressId;
+    @Column(name = "ZIPCODE_ID")
+    private Long zipcode;
 
     @Column(name = "DS_ADDRESS")
     private String addressName;
@@ -30,11 +29,9 @@ public class Address {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @Column(name = "DS_ZIPCODE")
-    private String zipcode;
-
     // Relationships
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "address")
     private List<UserAddress> userAddresses = new ArrayList<UserAddress>();
 
 }

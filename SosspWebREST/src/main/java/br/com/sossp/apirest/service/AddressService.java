@@ -25,7 +25,7 @@ public class AddressService {
     }
 
     @Transactional
-    public void save(Long userId, AddressDTO addressDTO){
+    public void save(long userId, AddressDTO addressDTO){
         userRepository.findById(userId).ifPresent(user -> {
             Address address = addressDTO.buildAddress();
 

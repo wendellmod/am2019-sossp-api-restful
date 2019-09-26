@@ -1,5 +1,6 @@
 package br.com.sossp.apirest.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,13 +13,14 @@ import javax.persistence.*;
 public class UserAddress {
 
     @Id
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ADDRESS_ID")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ZIPCODE_ID", referencedColumnName = "ZIPCODE_ID")
     private Address address;
 
     @Column(name = "NR_ADDRESS")

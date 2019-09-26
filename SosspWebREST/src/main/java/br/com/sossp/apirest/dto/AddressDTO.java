@@ -8,22 +8,22 @@ import lombok.Data;
 @Data
 public class AddressDTO {
 
-    private String name;
+    private Long zipcode;
+    private String addressName;
     private String neighborhood;
     private String city;
     private State state;
-    private String zipcode;
     private int number;
     private String complement;
 
     public Address buildAddress(){
 
         Address address = new Address();
-        address.setAddressName(name);
+        address.setZipcode(zipcode);
+        address.setAddressName(addressName);
         address.setNeighborhood(neighborhood);
         address.setCity(city);
         address.setState(state);
-        address.setZipcode(zipcode);
 
         return address;
     }
