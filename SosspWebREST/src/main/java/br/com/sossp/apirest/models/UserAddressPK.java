@@ -10,8 +10,10 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class UserAddressPK implements Serializable {
 
-    private long user;
+    private Long userAddressId;
 
-    private long address;
+    private Long user;
+
+    private Long address;
 
 }

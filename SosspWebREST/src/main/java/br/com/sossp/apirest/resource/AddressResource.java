@@ -21,33 +21,32 @@ public class AddressResource {
     @Autowired
     private AddressRepository repository;
 
-    // CRUD - Start
     @GetMapping
     public List<Address> getAddress(){
         return repository.findAll();
     }
 
     @GetMapping("{addressId}")
-    public Address getAddressId(@PathVariable long addressId){
+    public Address getAddressId(@PathVariable Long addressId){
         return repository.findById(addressId).get();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void postAddress(@RequestBody AddressDTO addressDTO, @PathVariable long idUser){
+    public void postAddress(@RequestBody AddressDTO addressDTO, @PathVariable Long idUser){
         service.save(idUser, addressDTO);
     }
 
     @PutMapping("{addressId}")
-    public Address putAddress(@RequestBody Address address, @PathVariable long addressId){
+    public Address putAddress(@RequestBody Address address, @PathVariable Long addressId){
         address.setZipcode(addressId);
         return repository.save(address);
     }
-
+    /*
     @DeleteMapping("{addressId}")
-    public void deleteAddress(@PathVariable long addressId){
+    public void deleteAddress(@PathVariable Long addressId){
         repository.deleteById(addressId);
     }
-    // CRUD - End
+    */
 
 }

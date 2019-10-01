@@ -15,7 +15,7 @@ public class User {
     @Id
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user")
-    private long userId;
+    private Long userId;
 
     @Column(name = "FIRST_NAME")
     private String name;

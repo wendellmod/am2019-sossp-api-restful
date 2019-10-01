@@ -20,7 +20,7 @@ public class UserDTO {
     private String email;
     private String password;
     private String imgAvatar;
-    private List<AddressDTO> addresses;
+    private List<AddressDTO> userAddresses;
 
     public User buildUser(){
 

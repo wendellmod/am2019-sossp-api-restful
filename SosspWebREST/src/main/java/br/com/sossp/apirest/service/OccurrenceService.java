@@ -21,7 +21,7 @@ public class OccurrenceService {
     }
 
     @Transactional
-    public void save(long userId, OccurrenceDTO dto){
+    public void save(Long userId, OccurrenceDTO dto){
         userRepository.findById(userId).ifPresent(user -> {
             Occurrence occurrence = dto.buildOccurrence();
 

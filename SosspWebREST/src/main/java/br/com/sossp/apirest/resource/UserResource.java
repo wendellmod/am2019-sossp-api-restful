@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("api/user")
 public class UserResource {
@@ -20,15 +18,8 @@ public class UserResource {
     @Autowired
     private UserService service;
 
-
-    // CRUD - Start
-    @GetMapping
-    public List<User> getUser(){
-        return repository.findAll();
-    }
-
     @GetMapping("{userId}")
-    public User getUserId(@PathVariable long userId){
+    public User getUserId(@PathVariable Long userId){
         return repository.findById(userId).get();
     }
 
@@ -43,19 +34,18 @@ public class UserResource {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("complete")
     public void postUserComplete(@RequestBody UserDTO userDTO){
-        this.service.save(userDTO);
+        service.save(userDTO);
     }
 
     @PutMapping("{userId}")
-    public User putUser(@RequestBody User user, @PathVariable long userId){
+    public User putUser(@RequestBody User user, @PathVariable Long userId){
         user.setUserId(userId);
         return repository.save(user);
     }
 
     @DeleteMapping("{userId}")
-    public void deleteUser(@PathVariable long userId){
+    public void deleteUser(@PathVariable Long userId){
         repository.deleteById(userId);
     }
-    // CRUD - End
 
 }

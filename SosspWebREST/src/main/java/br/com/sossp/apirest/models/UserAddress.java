@@ -13,13 +13,19 @@ import javax.persistence.*;
 public class UserAddress {
 
     @Id
+    @SequenceGenerator(name = "userAddress", sequenceName = "SQ_USER_ADDRESS", allocationSize = 1)
+    @Column(name = "USER_ADDRESS_ID")
+    @GeneratedValue(generator = "userAddress", strategy = GenerationType.SEQUENCE)
+    private Long userAddressId;
+
+    @Id
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
     @Id
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "ZIPCODE_ID", referencedColumnName = "ZIPCODE_ID")
     private Address address;
 

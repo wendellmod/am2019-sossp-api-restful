@@ -24,19 +24,20 @@ public class AddressService {
         this.userAddressRepository = userAddressRepository;
     }
 
+    // POST
     @Transactional
-    public void save(long userId, AddressDTO addressDTO){
+    public void save(Long userId, AddressDTO addressDTO){
         userRepository.findById(userId).ifPresent(user -> {
             Address address = addressDTO.buildAddress();
 
-            this.addressRepository.saveAndFlush(address);
+            this.addressRepository.save(address);
 
             UserAddress userAddress = addressDTO.buildUserAddress();
 
-            userAddress.setAddress(address);
             userAddress.setUser(user);
+            userAddress.setAddress(address);
 
-            this.userAddressRepository.saveAndFlush(userAddress);
+            this.userAddressRepository.save(userAddress);
         });
     }
 

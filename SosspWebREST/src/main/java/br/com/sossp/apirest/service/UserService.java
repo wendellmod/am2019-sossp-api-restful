@@ -21,22 +21,24 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // POST UserComplete
     @Transactional
     public void save(UserDTO userDto) {
         User user = userDto.buildUser();
 
-        if(CollectionUtils.isEmpty(userDto.getAddresses())) {
-            user.setUserAddresses(new ArrayList<>());
-            userDto.getAddresses().forEach(addressDto -> {
+        if(CollectionUtils.isEmpty(userDto.getUserAddresses())) {
+            userDto.setUserAddresses(new ArrayList<>()); // -- user to userDto
+            userDto.getUserAddresses().forEach(addressDto -> { // --
                 UserAddress userAddress = addressDto.buildUserAddress();
-                userAddress.setAddress(addressDto.buildAddress());
                 userAddress.setUser(user);
+                userAddress.setAddress(addressDto.buildAddress());
 
                 user.getUserAddresses().add(userAddress);
             });
         }
 
-        this.userRepository.save(user);
+        this.userRepository.saveAndFlush(user);
+
     }
 
 }

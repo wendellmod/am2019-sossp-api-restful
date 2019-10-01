@@ -20,7 +20,6 @@ public class OccurrenceResource {
     @Autowired
     private OccurrenceService service;
 
-    // CRUD - Start
     @GetMapping
     public List<Occurrence> getOccurrence(){
         return repository.findAll();
@@ -36,17 +35,5 @@ public class OccurrenceResource {
     public void postOccurrence(@RequestBody OccurrenceDTO occurrenceDTO, @PathVariable long idUser){
         service.save(idUser, occurrenceDTO);
     }
-
-    @PutMapping("{occurrenceId}")
-    public Occurrence putOccurrence(@RequestBody Occurrence occurrence, @PathVariable long occurrenceId){
-        occurrence.setOccurrenceId(occurrenceId);
-        return repository.save(occurrence);
-    }
-
-    @DeleteMapping("{occurrenceId}")
-    public void deleteOccurrence(@PathVariable long occurrenceId){
-        repository.deleteById(occurrenceId);
-    }
-    // CRUD - End
 
 }
