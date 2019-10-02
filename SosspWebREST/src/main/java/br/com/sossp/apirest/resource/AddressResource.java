@@ -37,16 +37,4 @@ public class AddressResource {
         service.save(idUser, addressDTO);
     }
 
-    @PutMapping("{addressId}")
-    public Address putAddress(@RequestBody Address address, @PathVariable Long addressId){
-        address.setZipcode(addressId);
-        return repository.save(address);
-    }
-    /*
-    @DeleteMapping("{addressId}")
-    public void deleteAddress(@PathVariable Long addressId){
-        repository.deleteById(addressId);
-    }
-    */
-
 }

@@ -1,9 +1,7 @@
 package br.com.sossp.apirest.resource;
 
-import br.com.sossp.apirest.dto.UserDTO;
 import br.com.sossp.apirest.models.User;
 import br.com.sossp.apirest.repository.UserRepository;
-import br.com.sossp.apirest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +13,6 @@ public class UserResource {
     @Autowired
     private UserRepository repository;
 
-    @Autowired
-    private UserService service;
-
     @GetMapping("{userId}")
     public User getUserId(@PathVariable Long userId){
         return repository.findById(userId).get();
@@ -28,24 +23,6 @@ public class UserResource {
     @PostMapping
     public void postUser(@RequestBody User user){
         this.repository.save(user);
-    }
-
-    // POST USER + ADDRESS
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("complete")
-    public void postUserComplete(@RequestBody UserDTO userDTO){
-        service.save(userDTO);
-    }
-
-    @PutMapping("{userId}")
-    public User putUser(@RequestBody User user, @PathVariable Long userId){
-        user.setUserId(userId);
-        return repository.save(user);
-    }
-
-    @DeleteMapping("{userId}")
-    public void deleteUser(@PathVariable Long userId){
-        repository.deleteById(userId);
     }
 
 }

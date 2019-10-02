@@ -50,7 +50,7 @@ public class User {
     private String imgAvatar;
 
     // Relationships
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user")
     private List<UserAddress> userAddresses;
 
     @OneToMany(mappedBy = "user")

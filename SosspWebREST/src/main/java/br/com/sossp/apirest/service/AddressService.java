@@ -6,6 +6,7 @@ import br.com.sossp.apirest.models.UserAddress;
 import br.com.sossp.apirest.repository.AddressRepository;
 import br.com.sossp.apirest.repository.UserAddressRepository;
 import br.com.sossp.apirest.repository.UserRepository;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,16 +29,18 @@ public class AddressService {
     @Transactional
     public void save(Long userId, AddressDTO addressDTO){
         userRepository.findById(userId).ifPresent(user -> {
+
             Address address = addressDTO.buildAddress();
 
-            this.addressRepository.save(address);
+            this.addressRepository.saveAndFlush(address);
 
             UserAddress userAddress = addressDTO.buildUserAddress();
 
             userAddress.setUser(user);
             userAddress.setAddress(address);
 
-            this.userAddressRepository.save(userAddress);
+            this.userAddressRepository.saveAndFlush(userAddress);
+
         });
     }
 
