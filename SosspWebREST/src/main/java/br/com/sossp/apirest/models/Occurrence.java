@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,10 @@ public class Occurrence {
     private boolean status;
 
     @Column(name = "N_LONGITUDE")
-    private long longitude;
+    private String longitude;
 
     @Column(name = "N_LATITUDE")
-    private long latitude;
+    private String latitude;
 
     // Relationships
     @ManyToOne

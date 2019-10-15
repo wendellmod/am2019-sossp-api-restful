@@ -3,6 +3,7 @@ package br.com.sossp.apirest.service;
 import br.com.sossp.apirest.dto.AddressDTO;
 import br.com.sossp.apirest.models.Address;
 import br.com.sossp.apirest.models.UserAddress;
+import br.com.sossp.apirest.models.UserAddressPK;
 import br.com.sossp.apirest.repository.AddressRepository;
 import br.com.sossp.apirest.repository.UserAddressRepository;
 import br.com.sossp.apirest.repository.UserRepository;

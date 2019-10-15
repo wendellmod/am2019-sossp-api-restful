@@ -3,6 +3,7 @@ package br.com.sossp.apirest.dto;
 import br.com.sossp.apirest.models.Occurrence;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -12,8 +13,8 @@ public class OccurrenceDTO {
     private LocalDate dateOccurrence;
     private LocalDate currentDate;
     private boolean status;
-    private long longitude;
-    private long latitude;
+    private String longitude;
+    private String latitude;
 
     public Occurrence buildOccurrence(){
 

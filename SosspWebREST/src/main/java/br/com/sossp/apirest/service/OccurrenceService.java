@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OccurrenceService {
 
@@ -19,6 +22,18 @@ public class OccurrenceService {
         this.occurrenceRepository = occurrenceRepository;
         this.userRepository = userRepository;
     }
+
+//    @Transactional
+//    public List<OccurrenceDTO> findAllOccurrencesUser(Long userId) {
+//        List<OccurrenceDTO> occurrenceDTOS = new ArrayList<>();
+//        OccurrenceDTO occurrenceDTO = new OccurrenceDTO();
+//        return userRepository
+//                .findById(userId)
+//                .ifPresent(user -> {
+//
+//                });
+//
+//    }
 
     @Transactional
     public void save(Long userId, OccurrenceDTO dto){
