@@ -20,10 +20,10 @@ public class OccurrenceResource {
     @Autowired
     private OccurrenceService service;
 
-//    @GetMapping
-//    public List<OccurrenceDTO> getAllOccurrencesUser(@PathVariable Long idUser){
-//        return service.findAllOccurrencesUser(idUser);
-//    }
+    @GetMapping
+    public List<OccurrenceDTO> getAllOccurrencesUser(@PathVariable Long idUser){
+        return service.findAllOccurrencesUser(idUser);
+    }
 
     @GetMapping("all")
     public List<Occurrence> getAllOccurrences(){

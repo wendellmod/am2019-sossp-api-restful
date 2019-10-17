@@ -4,8 +4,11 @@ import br.com.sossp.apirest.models.Address;
 import br.com.sossp.apirest.models.State;
 import br.com.sossp.apirest.models.UserAddress;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter @Setter @NoArgsConstructor
 public class AddressDTO {
 
     private Long zipcode;
