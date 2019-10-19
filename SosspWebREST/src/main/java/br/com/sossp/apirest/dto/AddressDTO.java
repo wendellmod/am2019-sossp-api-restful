@@ -19,6 +19,18 @@ public class AddressDTO {
     private int number;
     private String complement;
 
+    public AddressDTO(UserAddress userAddress) {
+
+        this.zipcode = userAddress.getAddress().getZipcode();
+        this.addressName = userAddress.getAddress().getAddressName();
+        this.neighborhood = userAddress.getAddress().getNeighborhood();
+        this.city = userAddress.getAddress().getCity();
+        this.state = userAddress.getAddress().getState();
+        this.complement = userAddress.getAddressComplement();
+        this.number = userAddress.getNumberAddress();
+
+    }
+
     public Address buildAddress(){
 
         Address address = new Address();

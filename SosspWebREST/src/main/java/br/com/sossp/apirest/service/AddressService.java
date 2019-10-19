@@ -2,6 +2,7 @@ package br.com.sossp.apirest.service;
 
 import br.com.sossp.apirest.dto.AddressDTO;
 import br.com.sossp.apirest.models.Address;
+import br.com.sossp.apirest.models.User;
 import br.com.sossp.apirest.models.UserAddress;
 import br.com.sossp.apirest.models.UserAddressPK;
 import br.com.sossp.apirest.repository.AddressRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AddressService {
@@ -45,6 +47,14 @@ public class AddressService {
             this.userAddressRepository.saveAndFlush(userAddress);
 
         });
+    }
+
+    public List<AddressDTO> findAddressesByUser(Long userId) {
+        return userRepository.findById(userId).get()
+                .getUserAddresses()
+                .stream()
+                .map(AddressDTO::new)
+                .collect(Collectors.toList());
     }
 
 }

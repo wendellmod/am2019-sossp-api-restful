@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/user/{idUser}/address")
+@RequestMapping("api/")
 public class AddressResource {
 
     @Autowired
@@ -21,9 +21,14 @@ public class AddressResource {
     @Autowired
     private AddressRepository repository;
 
-    @GetMapping
+    @GetMapping("addresses")
     public List<Address> getAddress(){
         return repository.findAll();
+    }
+
+    @GetMapping("user/{userId}/addresses")
+    public List<AddressDTO> findAddressesByUser(@PathVariable Long userId) {
+        return service.findAddressesByUser(userId);
     }
 
     @GetMapping("{addressId}")
