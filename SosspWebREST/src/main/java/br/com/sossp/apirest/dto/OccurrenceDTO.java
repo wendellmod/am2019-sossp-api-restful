@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Getter @Setter @NoArgsConstructor
 public class OccurrenceDTO {
 
+    private long occurrenceId;
     private String typeOccurrence;
     private LocalDate dateOccurrence;
     private LocalDate currentDate;
@@ -21,6 +22,7 @@ public class OccurrenceDTO {
     private String latitude;
 
     public OccurrenceDTO(Occurrence occurrence) {
+        this.occurrenceId = occurrence.getOccurrenceId();
         this.typeOccurrence = occurrence.getTypeOccurrence();
         this.dateOccurrence = occurrence.getDateOccurrence();
         this.currentDate = occurrence.getCurrentDate();

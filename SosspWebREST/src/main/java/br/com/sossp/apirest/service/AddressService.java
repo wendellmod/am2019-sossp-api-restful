@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AddressService {
@@ -26,6 +27,31 @@ public class AddressService {
         this.addressRepository = addressRepository;
         this.userRepository = userRepository;
         this.userAddressRepository = userAddressRepository;
+    }
+
+    // GET
+    public AddressDTO findByPk(Long userId, Long zipcode, Integer numberAddress) {
+
+        UserAddressPK pk = new UserAddressPK();
+        pk.setUser(userId);
+        pk.setAddress(zipcode);
+        pk.setNumberAddress(numberAddress);
+
+        return userAddressRepository.findById(pk).get()
+                .getUser().getUserAddresses()
+                .stream()
+                .map(AddressDTO::new)
+                .findFirst()
+                .get();
+    }
+
+    // GET
+    public List<AddressDTO> findAddressesByUser(Long userId) {
+        return userRepository.findById(userId).get()
+                .getUserAddresses()
+                .stream()
+                .map(AddressDTO::new)
+                .collect(Collectors.toList());
     }
 
     // POST
